@@ -11,7 +11,7 @@
                     <!-- Conditional check for role (if not 'petugas') -->
                     @if(Auth::user()->role == 'admin')
                         <div class="d-flex justify-content-end mb-3">
-                            <a href="#" class="btn btn-primary">Tambah Produk</a>
+                            <a href="{{ route('products.create') }}" class="btn btn-primary">Tambah Produk</a>
                         </div>
                     @endif              
                     <table class="table">
@@ -37,13 +37,13 @@
                                     <td>
                                         @if (Auth::user()->role == 'admin')
                                             
-                                        <a href="#" class="btn btn-sm" 
+                                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm" 
                                             style="background-color: #fbc02d; color: white;">Edit</a>
                                             <button type="button" class="btn btn-sm" style="background-color: #039be5; color: black;" 
                                             data-bs-toggle="modal" data-bs-target="#updateStockModal{{ $product->id }}">
                                             Update Stok
                                         </button>
-                                        <form action="#" method="POST" style="display: inline;" 
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;" 
                                             onsubmit="return confirm('Yakin ingin menghapus produk ini?');">
                                             @csrf
                                             @method('DELETE')
@@ -64,7 +64,29 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="#" method="POST">
+                                                <form action="{{ route('products.updateStock', $product->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="mb-3">
+                                                        <label for="productName{{ $product->id }}" class="form-label">Nama
+                                                            Produk</label>
+                                                        <input type="text" class="form-control"
+                                                            id="productName{{ $product->id }}"
+                                                            value="{{ $product->product_name }}" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="stock{{ $product->id }}"
+                                                            class="form-label">Stok</label>
+                                                        <input type="number" name="stock" class="form-control"
+                                                            id="stock{{ $product->id }}" value="{{ $product->stock }}"
+                                                            min="0" required>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan
+                                                            Perubahan</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>

@@ -22,7 +22,7 @@
                     <div class="card mb-0">
                         <div class="card-body">
                             <h3>Log In Form</h3>
-                            <form action="#" method="POST">
+                            <form action="{{ route('authProcess') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Email</label>

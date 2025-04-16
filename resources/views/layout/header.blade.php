@@ -66,7 +66,7 @@
                                         Petugas</a>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
                                         Administator</a>
-                                <a class="dropdown-item" href="#"><i class="ti-user m-r-5 m-l-5"></i>
+                                <a class="dropdown-item" href="{{ route('logout') }}"><i class="ti-user m-r-5 m-l-5"></i>
                                     Logout</a>
                             </ul>
                         </li>

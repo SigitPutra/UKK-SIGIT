@@ -19,7 +19,7 @@
                             </div>
                         @endif
                         {{-- Form untuk update produk --}}
-                        <form action="#" method="POST"
+                        <form action="{{ route('products.update', $product->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -38,7 +38,7 @@
                                                 class="text-danger">*</span></label>
                                         <div class="col-md-12">
                                             <input type="text" id="input2" class="form-control" name="price"
-                                                value="{{ old('price', $product->price) }}">
+                                                value="{{ old('price', 'Rp. ' . number_format($product->price, 0, ',', '.')) }}">
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,6 @@
         </div>
     </div>
 
-    {{-- Script untuk swal notification --}}
     <script src="http://45.64.100.26:88/ukk-kasir/public/plugins/swal2.js"></script>
     <script>
         function notif(type, msg) {
@@ -95,7 +94,7 @@
     <script>
         var rupiah = document.getElementById('input2');
 
-        // Format nilai rupiah saat halaman dimuat
+
         document.addEventListener("DOMContentLoaded", function() {
             rupiah.value = formatRupiah(rupiah.value, 'Rp. ');
         });
@@ -123,3 +122,4 @@
         }
     </script>
 @endsection
+

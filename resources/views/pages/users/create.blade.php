@@ -1,4 +1,4 @@
-@extends('views.main') {{-- Tidak perlu menggunakan 'views.' --}}
+@extends('main') {{-- Tidak perlu menggunakan 'views.' --}}
 @section('title', '| User')
 @section('breadcrumb1', 'User')
 @section('breadcrumb2', 'User')
@@ -8,7 +8,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

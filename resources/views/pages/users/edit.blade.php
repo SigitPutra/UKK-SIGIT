@@ -8,8 +8,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="POST" enctype="multipart/form-data">
-                        @method('PUT') {{-- Tambahkan method PUT untuk update --}}
+                    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
